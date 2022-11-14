@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Queries
+{% endblock title %}
+
+
+{% block body %}
+<br>
+<div class="container">
+    {% for data in result %}
+      <table class="table mt-4">
+          <thead class="thead-dark">
+              <tr>
+                <th>Keywords</th>
+                {% for word in data.data %}
+                  <th scope="col">{{word.name}}</th>
+                {% endfor %}
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                {% for item in data.data %}
+                  {% if forloop.counter == 1 %}
+                    <th>{{data.word}}</th>
+                  {% endif %} 
+                  <td>{{item.value}}</td>
+                {% endfor %} 
+              </tr>
+          </tbody>
+      </table>
+    {% endfor %}
+</div>
+<br /> <br />
+<div class="container card">
+
+    {% for r in results %}
+    {{r}}
+    {% endfor %}
+</div>
+
+{% endblock body %}
