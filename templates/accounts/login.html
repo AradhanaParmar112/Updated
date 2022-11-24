@@ -1,0 +1,48 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block style %}
+<style>
+  html {
+    min-height: 100%;
+  }
+
+  body {
+    background-image: url("{% static 'images/image.jpg'%}");
+    background-size: cover;
+  }
+
+  .form-signin {
+    max-width: 380px;
+    padding: 25px;
+
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+
+<br><br><br>
+<div class="form-signin m-auto text-center">
+  <h1>Login</h1>
+  <br>
+  {% for message in messages%}
+
+  <div class="alert alert-danger" role="alert">{{message}}</div>
+  {% endfor%}
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+    </div>
+    <div class="mb-3">
+      <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+    </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="submit">Login</button>
+    </div>
+    <br>
+    <p>Don’t have an account? <a href="{% url 'signup' %}" style="text-decoration: None;"><strong>Sign IN</strong></a>
+    </p>
+  </form>
+</div>
+{% endblock %}

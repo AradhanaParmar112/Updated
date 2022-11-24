@@ -3,11 +3,12 @@ from django.shortcuts import render, redirect
 from .models import QueryHolder, HelperModel
 import json
 import requests
+from django.contrib.auth.decorators import login_required
 
 url = 'https://qtest.eng.netapp.com'
 projectId = 67
 
-
+@login_required(login_url='/accounts/login/')
 def new_home(request):
     if request.method == 'POST':
         type_new_modify = request.POST.get('type_new_modify')

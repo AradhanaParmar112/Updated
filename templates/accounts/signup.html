@@ -1,0 +1,48 @@
+{% extends 'base2.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block style %}
+<style>
+    html {
+        min-height: 100%;
+    }
+
+    body {
+        background-image: url("{% static 'images/image.jpg'%}");
+        background-size: cover;
+    }
+
+    .form-signin {
+        max-width: 380px;
+        padding: 25px;
+
+    }
+</style>
+{% endblock %}
+{% block main %}
+<br>
+<div class="form-signin m-auto">
+    <h1>Sign Up</h1>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="mb-3">
+            {% render_field field class+="form-control" placeholder=field.label %}
+            <small style="color:red;">{{ field.errors }}</small>
+        </div>
+        {% endfor %}
+
+        <div class="d-grid gap-2">
+            <button class="btn btn-success" type="submit">Signup</button>
+        </div>
+        <br>
+
+        <p>Already have an account? <a href="{% url 'login' %}"
+                style="text-decoration: none;"><strong>Login</strong></a></p>
+
+    </form>
+</div>
+{% endblock %}
